@@ -1,3 +1,8 @@
-requests
 arxiv
 pyyaml
+requests
+pydantic>=2.6
+numpy>=1.26
+scikit-learn>=1.4
+tenacity>=8.2
+openai>=1.40

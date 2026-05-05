@@ -1,0 +1,62 @@
+default_query: "computer vision"
+default_keywords: []
+
+time_range:
+  start: "2025-01-01"
+  end: "2026-04-17"
+
+retrieval:
+  max_candidates: 1200
+  min_keyword_hits: 0
+  category_allowlist:
+    - cs.CV
+    - cs.AI
+    - cs.LG
+    - cs.RO
+    - cs.IR
+    - eess.IV
+    - eess.SP
+    - stat.ML
+
+ranking:
+  semantic: 0.45
+  keyword: 0.35
+  recency: 0.20
+
+summarization:
+  enabled: true
+  top_k: 30
+  provider: "openai"
+  model: "gpt-4.1-mini"
+  temperature: 0.2
+  max_output_tokens: 500
+
+output:
+  output_dir: "outputs"
+  json_filename: "papers.json"
+  markdown_filename: "brief.md"
+
+topics:
+  SLAM:
+    query: "simultaneous localization and mapping"
+    keywords:
+      - "SLAM"
+      - "visual odometry"
+      - "loop closure"
+      - "pose graph"
+
+  Visual Localization:
+    query: "visual localization"
+    keywords:
+      - "visual localization"
+      - "camera localization"
+      - "place recognition"
+      - "image retrieval"
+
+  NeRF:
+    query: "neural radiance fields"
+    keywords:
+      - "NeRF"
+      - "novel view synthesis"
+      - "3D reconstruction"
+      - "gaussian splatting"
