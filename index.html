@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Literature Agent</title>
+    <style>
+      :root {
+        --bg: #f4efe7;
+        --card: #fffaf4;
+        --ink: #1f2933;
+        --accent: #0f766e;
+        --muted: #52606d;
+        --line: #d9d2c3;
+      }
+      body {
+        margin: 0;
+        font-family: "IBM Plex Sans", "Helvetica Neue", sans-serif;
+        background: radial-gradient(circle at top left, #fff6e8, var(--bg));
+        color: var(--ink);
+      }
+      main {
+        max-width: 920px;
+        margin: 48px auto;
+        padding: 0 24px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 28px;
+        box-shadow: 0 12px 40px rgba(31, 41, 51, 0.08);
+      }
+      h1 {
+        margin-top: 0;
+        font-size: 2.2rem;
+      }
+      p, li {
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      code {
+        color: var(--accent);
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="card">
+        <h1>AI Literature Agent</h1>
+        <p>
+          This app runs a one-shot Codex agent that retrieves AI-related papers from arXiv,
+          writes ranked paper outputs, and emits a downstream-ready <code>agent_payload.json</code>
+          for other group skills.
+        </p>
+        <ul>
+          <li>Skill entry: <code>python run_skill.py --config skill_config.yaml</code></li>
+          <li>Agent entry: <code>python run_agent.py --config agent_config.yaml</code></li>
+          <li>Main outputs: <code>outputs/manifest.json</code>, <code>outputs/agent_payload.json</code></li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

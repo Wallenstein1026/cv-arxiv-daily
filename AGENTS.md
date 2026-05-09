@@ -1,58 +1,86 @@
-# cv-arxiv-daily
+# AI Literature Agent
 
-Repository metadata for StudyClawHub submission.
+Codex-powered research app that contains one top-level agent and one standalone skill for AI-related arXiv literature retrieval.
 
-## Type
+## Single Invariant
 
-Skill
+The repository exposes two concrete entry points:
 
-## Name
+- `python run_skill.py --config skill_config.yaml`
+- `python run_agent.py --config agent_config.yaml`
 
-`cv-arxiv-daily`
+The skill performs paper retrieval and summarization. The agent orchestrates that skill and writes an `agent_payload.json` artifact.
 
-## Version
+## Components
 
-`0.1.0`
+This repository contains exactly one agent-facing skill and one app-level agent wrapper.
 
-## Author
+### `/literature-retrieval`
 
-`LeyiSheng`
+Reusable paper retrieval module.
 
-## Repository
+- purpose: retrieve AI-related papers from arXiv and emit ranked outputs
+- entry: `python run_skill.py --config skill_config.yaml`
+- outputs:
+  - `outputs/<topic>.papers.json`
+  - `outputs/<topic>.brief.md`
+  - `outputs/<topic>.skill_b.json`
+  - `outputs/manifest.json`
 
-`https://github.com/LeyiSheng/cv-arxiv-daily`
+### `/research-agent`
 
-## Skill Path
+Top-level app orchestrator.
 
-`.`
+- purpose: run the agent workflow and package the skill outputs as app-level artifacts
+- entry: `python run_agent.py --config agent_config.yaml`
+- outputs:
+  - `outputs/manifest.json`
+  - `outputs/agent_payload.json`
+  - `outputs/agent_summary.md`
 
-## Description
+## App Structure
 
-Retrieves recent computer vision papers from arXiv, filters and ranks them by topic relevance, and generates JSON and Markdown research briefs.
+- App manifest: `stuclaw.app.json`
+- App landing page: `index.html`
+- Start script: `start.sh`
+- Stop script: `stop.sh`
+- Skill config: `skill_config.yaml`
+- Agent config: `agent_config.yaml`
 
-## Entry Point
+## Call Hierarchy
 
-```bash
-python run_skill.py --config skill_config.yaml
+`/research-agent` is the entry for normal app execution and internally uses `/literature-retrieval`.
+
+```text
+research-agent
+  -> literature-retrieval
+  -> outputs/manifest.json
+  -> outputs/agent_payload.json
+  -> submission-ready artifacts
 ```
 
-## Outputs
+## Runtime Notes
 
-- `outputs/<topic>.papers.json`
-- `outputs/<topic>.brief.md`
-- `outputs/manifest.json`
+- The app is a one-shot workflow, not a long-running daemon
+- `start.sh` runs the agent once and writes artifacts
+- `stop.sh` is informational because no background process remains after completion
 
-## Tags
+## Quick Commands
 
-`arxiv`, `computer-vision`, `research-mining`, `paper-ranking`, `summarization`
+Run the full agent:
 
-## Topics
+```bash
+bash start.sh
+```
 
-- `SLAM`
-- `Visual Localization`
-- `NeRF`
+Run only the skill:
 
-## Notes
+```bash
+python run_skill.py --config skill_config.yaml --topic "Graph Learning"
+```
 
-- This repository is submitted as a standalone skill.
-- If a course submission also requires a group-level agent, that agent should be registered separately.
+Run selected agent topics:
+
+```bash
+python run_agent.py --config agent_config.yaml --topic "Large Language Models" --topic "Graph Learning"
+```

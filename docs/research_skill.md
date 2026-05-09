@@ -9,7 +9,7 @@ python run_skill.py --config skill_config.yaml
 Run one topic only:
 
 ```bash
-python run_skill.py --config skill_config.yaml --topic SLAM
+python run_skill.py --config skill_config.yaml --topic "Graph Learning"
 ```
 
 ## Outputs

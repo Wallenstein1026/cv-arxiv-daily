@@ -1,0 +1,14 @@
+app_id: "ai-literature-agent"
+app_name: "AI Literature Agent"
+version: "0.1.0"
+task_name: "ai_research_literature_pipeline"
+description: "Retrieve AI-related papers from arXiv and emit downstream-ready payloads for group skills."
+skill_config: "skill_config.yaml"
+output_dir: "outputs"
+default_topics:
+  - "Large Language Models"
+  - "Graph Learning"
+downstream_skills:
+  - "graph_data_builder"
+  - "network_analysis"
+  - "report_and_visualization"

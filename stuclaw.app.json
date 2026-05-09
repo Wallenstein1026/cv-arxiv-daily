@@ -1,0 +1,75 @@
+{
+  "schema": "stuclaw.app.v0",
+  "id": "ai-literature-agent",
+  "name": "AI Literature Agent",
+  "version": "0.1.0",
+  "type": "web-agent-app",
+  "description": "A Codex-powered agent that retrieves recent AI papers from arXiv and emits structured app-level artifacts.",
+  "desktop": {
+    "window": {
+      "width": 1100,
+      "height": 760,
+      "minWidth": 920,
+      "minHeight": 620
+    }
+  },
+  "actions": {
+    "start": {
+      "skill": "research-agent",
+      "openAppOnFinish": false,
+      "prompt": "Run the AI Literature Agent workflow using the research-agent skill. Read agent_config.yaml, execute the agent, generate agent artifacts, and summarize the produced outputs."
+    },
+    "stop": {
+      "skill": "research-agent",
+      "prompt": "Stop AI Literature Agent. If there is no background process, state that the app uses a one-shot workflow and nothing needs to be stopped."
+    }
+  },
+  "codex": {
+    "instructions": "AGENTS.md",
+    "skillsDir": ".agents/skills",
+    "defaultModel": "gpt-5.4",
+    "requiresJsonl": true,
+    "requiresAgentMessageDelta": true
+  },
+  "environment": {
+    "mode": "existing",
+    "profile": "python311plus",
+    "packages": [
+      "python>=3.11",
+      "pip",
+      "pyyaml",
+      "pydantic",
+      "numpy",
+      "scikit-learn"
+    ],
+    "pythonModules": [
+      "yaml",
+      "pydantic",
+      "numpy",
+      "sklearn",
+      "arxiv",
+      "openai"
+    ],
+    "hostBinaries": [
+      "bash",
+      "python3"
+    ]
+  },
+  "runtime": {
+    "env": [
+      "PY"
+    ],
+    "binaries": {
+      "python": "PY"
+    },
+    "logs": [
+      "outputs/agent_summary.md",
+      "outputs/agent_payload.json"
+    ]
+  },
+  "hub": {
+    "platform": "StudyClawHub",
+    "slug": "ai-literature-agent",
+    "category": "Research"
+  }
+}

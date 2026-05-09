@@ -1,13 +1,13 @@
-default_query: "computer vision"
+default_query: "artificial intelligence"
 default_keywords: []
 
 time_range:
   start: "2025-01-01"
-  end: "2026-04-17"
+  end: "2026-12-31"
 
 retrieval:
   max_candidates: 250
-  min_keyword_hits: 1
+  min_keyword_hits: 0
   category_allowlist:
     - cs.CV
     - cs.AI
@@ -32,26 +32,26 @@ output:
   markdown_filename: "brief.md"
 
 topics:
-  SLAM:
-    query: "simultaneous localization and mapping"
+  Large Language Models:
+    query: "large language models"
     keywords:
-      - "SLAM"
-      - "visual odometry"
-      - "loop closure"
-      - "pose graph"
+      - "LLM"
+      - "instruction tuning"
+      - "reasoning"
+      - "alignment"
 
-  Visual Localization:
-    query: "visual localization"
+  Graph Learning:
+    query: "graph machine learning"
     keywords:
-      - "visual localization"
-      - "camera localization"
-      - "place recognition"
-      - "image retrieval"
+      - "graph neural network"
+      - "node classification"
+      - "link prediction"
+      - "graph representation learning"
 
-  NeRF:
-    query: "neural radiance fields"
+  Computer Vision:
+    query: "computer vision"
     keywords:
-      - "NeRF"
-      - "novel view synthesis"
-      - "3D reconstruction"
-      - "gaussian splatting"
+      - "image understanding"
+      - "object detection"
+      - "segmentation"
+      - "visual recognition"

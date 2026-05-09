@@ -1,0 +1,42 @@
+{
+  "agent": {
+    "app_id": "ai-literature-agent",
+    "app_name": "AI Literature Agent",
+    "version": "0.1.0",
+    "task_name": "ai_research_literature_pipeline",
+    "description": "Retrieve AI-related papers from arXiv and emit downstream-ready payloads for group skills.",
+    "generated_at": "2026-05-09T03:26:52.332942+00:00",
+    "run_id": "agent-20260509T032648Z"
+  },
+  "skill": {
+    "name": "literature_retrieval",
+    "entry_point": "python run_skill.py --config skill_config.yaml"
+  },
+  "topics": [
+    {
+      "topic": "Graph Learning",
+      "query": "graph machine learning",
+      "keywords": [
+        "graph neural network",
+        "node classification",
+        "link prediction",
+        "graph representation learning"
+      ],
+      "paper_count": 205,
+      "artifacts": {
+        "papers_json": "/Users/leyisheng/Desktop/py/socialproj/cv-arxiv-daily/outputs_submission/graph_learning.papers.json",
+        "brief_markdown": "/Users/leyisheng/Desktop/py/socialproj/cv-arxiv-daily/outputs_submission/graph_learning.brief.md",
+        "skill_b_json": "/Users/leyisheng/Desktop/py/socialproj/cv-arxiv-daily/outputs_submission/graph_learning.skill_b.json"
+      }
+    }
+  ],
+  "downstream": {
+    "skills": [
+      "graph_data_builder",
+      "network_analysis",
+      "report_and_visualization"
+    ],
+    "input_contract": "interfaces/skill_contracts.md",
+    "manifest_path": "/Users/leyisheng/Desktop/py/socialproj/cv-arxiv-daily/outputs_submission/manifest.json"
+  }
+}
