@@ -40,7 +40,7 @@ def load_config(config_file:str) -> dict:
         for k,v in config['keywords'].items():
             keywords[k] = parse_filters(v['filters'])
         return keywords
-    with open(config_file,'r') as f:
+    with open(config_file,'r', encoding='utf-8') as f:
         config = yaml.load(f,Loader=yaml.FullLoader)
         config['kv'] = pretty_filters(**config)
         logging.info(f'config = {config}')
@@ -153,7 +153,7 @@ def update_paper_links(filename):
         arxiv_id = re.sub(r'v\d+', '', arxiv_id)
         return date,title,authors,arxiv_id,code
 
-    with open(filename,"r") as f:
+    with open(filename,"r", encoding='utf-8') as f:
         content = f.read()
         if not content:
             m = {}
@@ -177,14 +177,14 @@ def update_paper_links(filename):
                 # Papers will keep their existing null code links
                 logging.info(f'Skipping code link update for paper_id = {paper_id} (PapersWithCode API deprecated)')
         # dump to json file
-        with open(filename,"w") as f:
+        with open(filename,"w", encoding='utf-8') as f:
             json.dump(json_data,f)
 
 def update_json_file(filename,data_dict):
     '''
     daily update json file using data_dict
     '''
-    with open(filename,"r") as f:
+    with open(filename,"r", encoding='utf-8') as f:
         content = f.read()
         if not content:
             m = {}
@@ -203,7 +203,7 @@ def update_json_file(filename,data_dict):
             else:
                 json_data[keyword] = papers
 
-    with open(filename,"w") as f:
+    with open(filename,"w", encoding='utf-8') as f:
         json.dump(json_data,f)
 
 def json_to_md(filename,md_filename,
@@ -236,7 +236,7 @@ def json_to_md(filename,md_filename,
     DateNow = str(DateNow)
     DateNow = DateNow.replace('-','.')
 
-    with open(filename,"r") as f:
+    with open(filename,"r", encoding='utf-8') as f:
         content = f.read()
         if not content:
             data = {}
@@ -244,11 +244,11 @@ def json_to_md(filename,md_filename,
             data = json.loads(content)
 
     # clean README.md if daily already exist else create it
-    with open(md_filename,"w+") as f:
+    with open(md_filename,"w+", encoding='utf-8') as f:
         pass
 
     # write data into README.md
-    with open(md_filename,"a+") as f:
+    with open(md_filename,"a+", encoding='utf-8') as f:
 
         if (use_title == True) and (to_web == True):
             f.write("---\n" + "layout: default\n" + "---\n\n")
